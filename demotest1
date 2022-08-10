@@ -1,0 +1,34 @@
+<h2 class="text-center font-bold">Download Now</h2>
+<!--[if lte IE 8]>
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script><!--[endif]---->
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script><script>
+var latest_form_url = window.location.href;
+var latest_sfdc_campaign = "Global-DEMO-Web Form Demo Requests-Overall";
+var latest_activity_name = "[Demo] Request A Demo";
+var latest_activity_type = "Demo";
+  hbspt.forms.create({
+        region: "na1",
+        portalId: "8092189",
+        formId: "4aae741e-80f4-4f57-9958-6d300828e19d", //replace with real form ID
+        sfdcCampaignId: "701f4000000IoCfAAK", //replace with real SFDC campaign
+    onFormReady: function($form) {
+        $form.find('input[name="latest_form_url"]').val(latest_form_url).change(); //set form submission URL
+        $form.find('input[name="latest_sfdc_campaign"]').val(latest_sfdc_campaign).change(); //set latest SFDC campaign
+        $form.find('input[name="latest_activity_name"]').val(latest_activity_name).change(); //set latest activity name
+        $form.find('input[name="latest_activity_type"]').val(latest_activity_type).change(); //set latest activity type
+    },
+    onFormSubmit: function($form) {
+// Dreamdata
+				if (window.analytics) {
+    			var email = $form.find('input[type=email]').val(); // TODO: not tested for email 
+    			if (email) 
+							window.analytics.identify(null, {email: email});
+							window.analytics.track(event);
+    }},
+    onFormSubmitted: function($form) {
+			window.dataLayer = window.dataLayer || [];
+			window.dataLayer.push({'event': 'demoFormSubmit'});
+      <a href="#" onclick="dataLayer.push({ 'email': 'DynamicEmailValue' });">Submit</a>
+    }
+});
+</script>
